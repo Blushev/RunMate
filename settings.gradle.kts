@@ -14,4 +14,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "RunMate"
-include ':app'
+include(":app")
