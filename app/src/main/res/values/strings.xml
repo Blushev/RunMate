@@ -1,3 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RunMate</string>
+    <string name="text_separator">:</string>
+    <string name="km_example_value">50 km</string>
+    <string name="text_multipoint">...</string>
+
+    <string name="btn_open">Open</string>
+
+    <string name="weekly_goal">Weekly goal</string>
+    <string name="meters">м</string>
+    <string name="kilometers">km</string>
+    <string name="passed">passed</string>
+    <string name="remaining">Remaining</string>
 </resources>
