@@ -3,13 +3,33 @@
     <string name="app_name">RunMate</string>
     <string name="text_separator">:</string>
     <string name="km_example_value">50 km</string>
+    <string name="calories_example_value">539 cal</string>
     <string name="text_multipoint">...</string>
+    <string name="time_example">01:09:44</string>
+    <string name="date_example">November 26</string>
+    <string name="speed_example">11,2 km/h</string>
 
     <string name="btn_open">Open</string>
+    <string name="btn_settings">Settings</string>
+    <string name="btn_all">All</string>
+    <string name="btn_edit_profile">Edit</string>
 
     <string name="weekly_goal">Weekly goal</string>
     <string name="meters">м</string>
     <string name="kilometers">km</string>
+    <string name="hour">hour</string>
+    <string name="cal">cal</string>
     <string name="passed">passed</string>
     <string name="remaining">Remaining</string>
+    <string name="now_in_running">Now in the running</string>
+    <string name="hello">Hello,</string>
+    <string name="profile">Profile</string>
+    <string name="user_name_example">Egor</string>
+    <string name="user_level_example">Beginner</string>
+    <string name="recent_events">Recent events</string>
+
+    <string name="personal_parameters">Personal parameters</string>
+    <string name="achievements">Achievements</string>
+    <string name="Settings">Settings</string>
+    <string name="our_contact">Our contact</string>
 </resources>

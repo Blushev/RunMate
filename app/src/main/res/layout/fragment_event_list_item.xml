@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_panel_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/event_list_item_img_example"
+        app:shapeAppearance="@style/br12ImageView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/event_date"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:textSize="11sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/date_example"
+        android:textColor="@color/secondary_op_07"
+        app:layout_constraintStart_toEndOf="@+id/profile_panel_image"
+        app:layout_constraintBottom_toTopOf="@+id/event_distance"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/event_distance"
+        style="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/km_example_value"
+        android:textColor="@color/secondary"
+        app:layout_constraintStart_toEndOf="@+id/profile_panel_image"
+        app:layout_constraintBottom_toTopOf="@+id/event_calories"
+        app:layout_constraintTop_toBottomOf="@+id/event_date" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/event_calories"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:textSize="11sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/calories_example_value"
+        android:textColor="@color/secondary_op_07"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profile_panel_image"
+        app:layout_constraintTop_toBottomOf="@+id/event_distance" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/event_speed"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:textSize="11sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/speed_example"
+        android:textColor="@color/secondary_op_07"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/event_calories"
+        app:layout_constraintTop_toBottomOf="@+id/event_distance" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/event_open_button"
+        android:text="@string/btn_open"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        app:icon="@drawable/baseline_arrow_forward_16"
+        app:iconTint="@color/secondary_op_07"
+        android:textColor="@color/secondary_op_07"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
