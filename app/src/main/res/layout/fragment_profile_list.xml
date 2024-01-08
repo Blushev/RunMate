@@ -23,7 +23,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/profile_list_personal_parameters_title"
-            style="@style/TextAppearance.AppCompat.Title"
+            style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -39,7 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="0dp"
-            android:text="@string/btn_open"
             android:textColor="@color/secondary_op_07"
             app:icon="@drawable/baseline_arrow_forward_16"
             app:iconTint="@color/secondary_op_07"
@@ -53,7 +52,8 @@
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        app:dividerColor="@color/secondary_op_01" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/profile_list_achievements_title"
-            style="@style/TextAppearance.AppCompat.Title"
+            style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -86,7 +86,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="0dp"
-            android:text="@string/btn_open"
             android:textColor="@color/secondary_op_07"
             app:icon="@drawable/baseline_arrow_forward_16"
             app:iconTint="@color/secondary_op_07"
@@ -100,7 +99,8 @@
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        app:dividerColor="@color/secondary_op_01" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -117,7 +117,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/personal_parameters_settings_title"
-            style="@style/TextAppearance.AppCompat.Title"
+            style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -133,7 +133,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="0dp"
-            android:text="@string/btn_open"
             android:textColor="@color/secondary_op_07"
             app:icon="@drawable/baseline_arrow_forward_16"
             app:iconTint="@color/secondary_op_07"
@@ -147,7 +146,8 @@
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        app:dividerColor="@color/secondary_op_01" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -164,7 +164,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/personal_parameters_settings_contact_title"
-            style="@style/TextAppearance.AppCompat.Title"
+            style="@style/TextAppearance.AppCompat.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -180,7 +180,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="0dp"
-            android:text="@string/btn_open"
             android:textColor="@color/secondary_op_07"
             app:icon="@drawable/baseline_arrow_forward_16"
             app:iconTint="@color/secondary_op_07"

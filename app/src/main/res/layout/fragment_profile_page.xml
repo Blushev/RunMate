@@ -45,7 +45,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:padding="0dp"
-            android:text="@string/btn_edit_profile"
             android:textColor="@color/light_gray_op_08"
             app:icon="@drawable/edit_icon"
             app:iconTint="@color/light_gray"

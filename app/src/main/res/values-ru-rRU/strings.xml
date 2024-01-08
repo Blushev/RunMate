@@ -27,9 +27,12 @@
     <string name="user_name_example">Егор</string>
     <string name="user_level_example">Beginner</string>
     <string name="recent_events">Недавние события</string>
+    <string name="total_progress">Общий прогресс</string>
 
     <string name="personal_parameters">Персональные параметры</string>
     <string name="achievements">Достижения</string>
     <string name="Settings">Настройки</string>
     <string name="our_contact">Наши контакты</string>
+
+    <string name="home">Дом</string>
 </resources>

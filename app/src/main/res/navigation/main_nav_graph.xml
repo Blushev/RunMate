@@ -2,10 +2,10 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/homePageFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/homePageFragment"
         android:name="com.example.runmate.presenter.home.HomePageFragment"
-        android:label="HomeFragment" />
+        android:label="HomePageFragment" />
 </navigation>

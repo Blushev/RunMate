@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
             android:padding="0dp"
-            android:text="@string/btn_settings"
             android:textColor="@color/light_gray"
             app:icon="@drawable/settings_icon"
             app:iconTint="@color/light_gray"

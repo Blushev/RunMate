@@ -68,7 +68,6 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/event_open_button"
-        android:text="@string/btn_open"
         style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
