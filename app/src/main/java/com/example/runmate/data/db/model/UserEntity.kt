@@ -2,21 +2,22 @@ package com.example.runmate.data.db.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.runmate.data.module.User
-import java.util.UUID
+import com.example.runmate.data.model.UserModel
 
 @Entity(tableName = "user")
 data class UserEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: UUID,
-    var login: String,
+    val id: Int = 0,
     var firstName: String,
-    var lastName: String?,
-    var secondName: String?,
-    var createAt: Long
+    var level: UserLevel = UserLevel.Beginner,
+    var goal: Float = 50f,
+    val createAt: Long,
+    var updateAt: Long,
+    var isDeleted: Boolean = false,
+    var isSelected: Boolean = false
 ) {
-    fun toUser(): User =
-        User(
-            id, login, firstName, lastName, secondName, createAt
+    fun toUserModel(): UserModel =
+        UserModel(
+            id, firstName, level, goal, createAt, updateAt, isDeleted, isSelected
         )
 }

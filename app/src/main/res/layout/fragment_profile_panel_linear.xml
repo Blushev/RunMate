@@ -8,7 +8,7 @@
         android:id="@+id/profile_panel_image"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:src="@drawable/user_avatar_example"
+        android:src="@drawable/baseline_account_circle_24"
         android:scaleType="centerCrop"
         app:shapeAppearance="@style/circularImageView"
         app:layout_constraintBottom_toBottomOf="parent"

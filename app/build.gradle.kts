@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
-    id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
     id("kotlin-kapt")
 }
@@ -86,9 +85,10 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$navigation")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$navigation")
 
-    // Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.49")
-    kapt("com.google.dagger:hilt-compiler:2.49")
+    // Dagger 2
+    val dagger = "2.49"
+    implementation("com.google.dagger:dagger:$dagger")
+    kapt("com.google.dagger:dagger-compiler:$dagger")
 
     // Room DB
     val room = "2.6.1"

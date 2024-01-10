@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profile_page_header"
@@ -29,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/profile_page_profile_panel"
+            android:id="@+id/profile_page_profile_page_profile_panel"
             layout="@layout/fragment_profile_panel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,9 +52,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <include
+        <fragment
             android:id="@+id/profile_page_progress_total"
-            layout="@layout/fragment_progress_total"
+            android:name="com.example.runmate.presenter.progressTotal.ProgressTotalFragment"
+            tools:layout="@layout/fragment_progress_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -61,7 +63,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_page_profile_panel" />
+            app:layout_constraintTop_toBottomOf="@+id/profile_page_profile_page_profile_panel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

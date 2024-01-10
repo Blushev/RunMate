@@ -10,7 +10,7 @@
     android:background="@drawable/accent_panel_background_br_30">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profile_panel_image"
+        android:id="@+id/now_in_running_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/now_in_running_img_with_overlay"
@@ -26,7 +26,7 @@
         android:text="@string/now_in_running"
         android:textColor="@color/light_gray"
         android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@+id/profile_panel_image"
+        app:layout_constraintStart_toEndOf="@+id/now_in_running_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -37,11 +37,11 @@
         android:text="@string/time_example"
         android:textColor="@color/light_gray"
         android:layout_marginStart="16dp"
-        app:layout_constraintStart_toEndOf="@+id/profile_panel_image"
+        app:layout_constraintStart_toEndOf="@+id/now_in_running_image"
         app:layout_constraintTop_toBottomOf="@+id/now_in_running_title" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/event_distance"
+        android:id="@+id/now_in_running_distance"
         style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,6 +58,6 @@
         android:text="@string/calories_example_value"
         android:textColor="@color/light_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_distance" />
+        app:layout_constraintTop_toBottomOf="@+id/now_in_running_distance" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

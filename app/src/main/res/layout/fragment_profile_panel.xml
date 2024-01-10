@@ -9,7 +9,7 @@
         android:layout_width="84dp"
         android:layout_height="84dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/user_avatar_example"
+        android:src="@drawable/baseline_account_circle_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

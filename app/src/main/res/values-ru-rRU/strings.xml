@@ -2,12 +2,12 @@
 <resources>
     <string name="app_name">RunMate</string>
     <string name="text_separator">:</string>
-    <string name="km_example_value">50 км</string>
-    <string name="calories_example_value">539 кал</string>
+    <string name="km_example_value">... км</string>
+    <string name="calories_example_value">... кал</string>
     <string name="text_multipoint">...</string>
-    <string name="time_example">01:09:44</string>
-    <string name="date_example">Ноябрь 26</string>
-    <string name="speed_example">11,2 км/ч</string>
+    <string name="time_example">..:..:..</string>
+    <string name="date_example">... ...</string>
+    <string name="speed_example">... км/ч</string>
 
     <string name="btn_open">Открыть</string>
     <string name="btn_settings">Настройки</string>
@@ -24,10 +24,16 @@
     <string name="now_in_running">Сейчас в беге</string>
     <string name="hello">Привет,</string>
     <string name="profile">Профиль</string>
-    <string name="user_name_example">Егор</string>
+    <string name="user_name_example">example_name</string>
+    <string name="user_name">Username</string>
     <string name="user_level_example">Beginner</string>
     <string name="recent_events">Недавние события</string>
     <string name="total_progress">Общий прогресс</string>
+
+    <string name="welcome_title">Добро пожаловать!</string>
+    <string name="welcome_description">Укажите имя пользователя. Предоставьте доступ к местоположению для отслеживания маршрута тренировок.</string>
+    <string name="failure_gps_message">Разрешение на доступ к местоположению не было получено. Запуск тренировок будет недоступен.</string>
+    <string name="btn_start">Старт</string>
 
     <string name="personal_parameters">Персональные параметры</string>
     <string name="achievements">Достижения</string>
