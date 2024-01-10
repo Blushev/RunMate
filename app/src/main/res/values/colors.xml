@@ -6,6 +6,7 @@
     <color name="light_gray">#F3F7FF</color>
     <color name="light_gray_op_08">#CCF3F7FF</color>
     <color name="accent">#5D63D1</color>
+    <color name="failure">#E63030</color>
     <color name="overlay_accent">#6D73DF</color>
     <color name="secondary">#333333</color>
     <color name="secondary_op_07">#B3333333</color>

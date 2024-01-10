@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include
-            android:id="@+id/profile_page_profile_panel"
+            android:id="@+id/home_page_profile_page_profile_panel"
             layout="@layout/fragment_profile_panel_linear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_page_profile_panel" />
+            app:layout_constraintTop_toBottomOf="@+id/home_page_profile_page_profile_panel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -99,8 +99,8 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <include
-            layout="@layout/fragment_event_list"
+        <FrameLayout
+            android:id="@+id/home_page_event_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

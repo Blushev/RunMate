@@ -2,10 +2,30 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/homePageFragment">
+    app:startDestination="@id/welcomePageFragment">
 
     <fragment
         android:id="@+id/homePageFragment"
         android:name="com.example.runmate.presenter.home.HomePageFragment"
-        android:label="HomePageFragment" />
+        android:label="HomePageFragment" >
+        <action
+            android:id="@+id/action_homePageFragment_to_profilePageFragment"
+            app:destination="@id/profilePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomePageFragment"
+        android:name="com.example.runmate.presenter.welcome.WelcomePageFragment"
+        android:label="WelcomePageFragment" >
+        <action
+            android:id="@+id/action_welcomePageFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilePageFragment"
+        android:name="com.example.runmate.presenter.profile.ProfilePageFragment"
+        android:label="ProfilePageFragment" >
+        <action
+            android:id="@+id/action_profilePageFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
 </navigation>

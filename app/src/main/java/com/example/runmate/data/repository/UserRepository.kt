@@ -1,30 +1,37 @@
 package com.example.runmate.data.repository
 
 import com.example.runmate.data.db.UserDAO
-import com.example.runmate.data.module.User
+import com.example.runmate.data.model.UserModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.util.UUID
 import javax.inject.Inject
 
 interface UserRepository {
-    suspend fun getUserById(id: UUID): Flow<User>
-    suspend fun upsertUser(user: User)
-    suspend fun deleteUser(user: User)
+    suspend fun upsertUser(userModel: UserModel)
+    suspend fun deleteUser(userModel: UserModel)
+
+    val getLatestSelectedUser: Flow<List<UserModel>>
+    val getAllUsersOrderedByCreateAt: Flow<List<UserModel>>
 }
 
 class UserRepositoryImpl @Inject constructor(
     private val dao: UserDAO
 ): UserRepository {
-    override suspend fun getUserById(id: UUID): Flow<User> {
-        return dao.getUserById(id).map { it.toUser() }
+
+    override suspend fun upsertUser(userModel: UserModel) {
+        dao.upsertUser(userModel.toUserEntity())
     }
 
-    override suspend fun upsertUser(user: User) {
-        dao.upsertUser(user.toUserEntity())
+    override suspend fun deleteUser(userModel: UserModel) {
+        dao.deleteUser(userModel.toUserEntity())
     }
 
-    override suspend fun deleteUser(user: User) {
-        dao.deleteUser(user.toUserEntity())
-    }
+    override val getLatestSelectedUser: Flow<List<UserModel>>
+        get() = dao.getLatestSelectedUser().map { it -> it.map { it.toUserModel() } }
+    override val getAllUsersOrderedByCreateAt: Flow<List<UserModel>>
+        get() = dao.getAllUsersOrderedByCreateAt().map { it ->
+            it.map {
+                it.toUserModel()
+            }
+        }
 }

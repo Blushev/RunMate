@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profile_panel_image"
+        android:id="@+id/event_image"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/event_list_item_img_example"
@@ -23,7 +23,7 @@
         android:layout_marginStart="16dp"
         android:text="@string/date_example"
         android:textColor="@color/secondary_op_07"
-        app:layout_constraintStart_toEndOf="@+id/profile_panel_image"
+        app:layout_constraintStart_toEndOf="@+id/event_image"
         app:layout_constraintBottom_toTopOf="@+id/event_distance"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +36,7 @@
         android:layout_marginStart="16dp"
         android:text="@string/km_example_value"
         android:textColor="@color/secondary"
-        app:layout_constraintStart_toEndOf="@+id/profile_panel_image"
+        app:layout_constraintStart_toEndOf="@+id/event_image"
         app:layout_constraintBottom_toTopOf="@+id/event_calories"
         app:layout_constraintTop_toBottomOf="@+id/event_date" />
 
@@ -50,7 +50,7 @@
         android:text="@string/calories_example_value"
         android:textColor="@color/secondary_op_07"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/profile_panel_image"
+        app:layout_constraintStart_toEndOf="@+id/event_image"
         app:layout_constraintTop_toBottomOf="@+id/event_distance" />
 
     <com.google.android.material.textview.MaterialTextView
