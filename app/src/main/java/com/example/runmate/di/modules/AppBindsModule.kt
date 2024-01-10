@@ -10,6 +10,14 @@ import com.example.runmate.domain.training.DeleteTrainingUseCase
 import com.example.runmate.domain.training.DeleteTrainingUseCaseImpl
 import com.example.runmate.domain.training.GetAllTrainingsOrderedByStartAtUseCase
 import com.example.runmate.domain.training.GetAllTrainingsOrderedByStartAtUseCaseImpl
+import com.example.runmate.domain.training.GetCaloriesTraveledByUserIdUseCase
+import com.example.runmate.domain.training.GetCaloriesTraveledByUserIdUseCaseImpl
+import com.example.runmate.domain.training.GetDistanceTraveledByUserIdUseCase
+import com.example.runmate.domain.training.GetDistanceTraveledByUserIdUseCaseImpl
+import com.example.runmate.domain.training.GetDistanceTraveledThisWeekByUserIdUseCase
+import com.example.runmate.domain.training.GetDistanceTraveledThisWeekByUserIdUseCaseImpl
+import com.example.runmate.domain.training.GetTimeTraveledByUserIdUseCase
+import com.example.runmate.domain.training.GetTimeTraveledByUserIdUseCaseImpl
 import com.example.runmate.domain.training.GetTrainingByIdUseCase
 import com.example.runmate.domain.training.GetTrainingByIdUseCaseImpl
 import com.example.runmate.domain.training.GetTrainingsOrderedByStartAtLimitedUseCase
@@ -66,6 +74,18 @@ interface AppBindsModule {
 
     @Binds
     fun bindUpsertTrainingUseCase(useCase: UpsertTrainingUseCaseImpl): UpsertTrainingUseCase
+
+    @Binds
+    fun bindGetDistanceTraveledThisWeekByUserIdUseCase(useCase: GetDistanceTraveledThisWeekByUserIdUseCaseImpl): GetDistanceTraveledThisWeekByUserIdUseCase
+
+    @Binds
+    fun bindGetDistanceTraveledByUserIdUseCase(useCase: GetDistanceTraveledByUserIdUseCaseImpl): GetDistanceTraveledByUserIdUseCase
+
+    @Binds
+    fun bindGetTimeTraveledByUserIdUseCase(useCase: GetTimeTraveledByUserIdUseCaseImpl): GetTimeTraveledByUserIdUseCase
+
+    @Binds
+    fun bindGetCaloriesTraveledByUserIdUseCase(useCase: GetCaloriesTraveledByUserIdUseCaseImpl): GetCaloriesTraveledByUserIdUseCase
 
     companion object {
         @Provides

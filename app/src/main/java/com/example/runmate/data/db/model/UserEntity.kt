@@ -10,6 +10,7 @@ data class UserEntity(
     val id: Int = 0,
     var firstName: String,
     var level: UserLevel = UserLevel.Beginner,
+    var goal: Float = 50f,
     val createAt: Long,
     var updateAt: Long,
     var isDeleted: Boolean = false,
@@ -17,6 +18,6 @@ data class UserEntity(
 ) {
     fun toUserModel(): UserModel =
         UserModel(
-            id, firstName, level, createAt, updateAt, isDeleted, isSelected
+            id, firstName, level, goal, createAt, updateAt, isDeleted, isSelected
         )
 }

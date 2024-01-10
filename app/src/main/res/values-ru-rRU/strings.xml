@@ -2,12 +2,12 @@
 <resources>
     <string name="app_name">RunMate</string>
     <string name="text_separator">:</string>
-    <string name="km_example_value">50 км</string>
-    <string name="calories_example_value">539 кал</string>
+    <string name="km_example_value">... км</string>
+    <string name="calories_example_value">... кал</string>
     <string name="text_multipoint">...</string>
-    <string name="time_example">01:09:44</string>
-    <string name="date_example">Ноябрь 26</string>
-    <string name="speed_example">11,2 км/ч</string>
+    <string name="time_example">..:..:..</string>
+    <string name="date_example">... ...</string>
+    <string name="speed_example">... км/ч</string>
 
     <string name="btn_open">Открыть</string>
     <string name="btn_settings">Настройки</string>

@@ -1,7 +1,6 @@
 package com.example.runmate.data.model
 
 import com.example.runmate.data.db.model.TrainingEntity
-import java.util.UUID
 
 data class TrainingModel(
     val id: Int = 0,

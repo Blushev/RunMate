@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class WelcomeViewModel @Inject constructor(
-    private val upsertUserUseCase: UpsertUserUseCase
+    private val upsertUserUseCase: UpsertUserUseCase,
 ): ViewModel() {
 
     private var user = UserModel(
@@ -31,9 +31,10 @@ class WelcomeViewModel @Inject constructor(
         return true
     }
 
-    fun createUser() {
+    fun createUser(): UserModel {
         viewModelScope.launch {
             upsertUserUseCase(user)
         }
+        return user
     }
 }

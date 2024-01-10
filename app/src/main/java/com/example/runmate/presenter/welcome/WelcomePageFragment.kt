@@ -32,6 +32,7 @@ class WelcomePageFragment: Fragment(R.layout.fragment_welcome_page) {
         mainViewModel.liveCurrentUserData.observe(viewLifecycleOwner) {
             if (it != null) {
                 val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
+                binding.welcomePageButton.visibility = View.GONE
                 findNavController().navigate(direction)
             }
         }
@@ -47,6 +48,7 @@ class WelcomePageFragment: Fragment(R.layout.fragment_welcome_page) {
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
                 welcomeViewModel.validateForm(s.toString())
+                binding.welcomePageButton.isEnabled = true
             }
         })
 
