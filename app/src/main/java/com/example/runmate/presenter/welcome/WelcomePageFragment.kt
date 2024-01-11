@@ -27,14 +27,17 @@ class WelcomePageFragment: Fragment(R.layout.fragment_welcome_page) {
     private val welcomeViewModel: WelcomeViewModel by viewModels() { viewModelFactory }
     private val mainViewModel: MainViewModel by viewModels() { viewModelFactory }
 
+    private var toHomeListener: (() -> Unit)? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         mainViewModel.liveCurrentUserData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.welcomePageButton.visibility = View.GONE
-                val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
-                findNavController().navigate(direction)
+                toHomeListener?.invoke()
+//                val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
+//                findNavController().navigate(direction)
             }
         }
 
@@ -54,24 +57,20 @@ class WelcomePageFragment: Fragment(R.layout.fragment_welcome_page) {
 
         binding.welcomePageButton.setOnClickListener {
             welcomeViewModel.createUser()
-            binding.welcomePageButton.isEnabled = true
-            val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
-            findNavController().navigate(direction)
+            toHomeListener?.invoke()
+//            val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
+//            findNavController().navigate(direction)
             true
         }
 
         showFailureMessage(false)
-        binding.welcomePageButton.isEnabled = false
-        binding.welcomePageButton.visibility = View.GONE
-        requireGpsPermission()
+//        requireGpsPermission()
     }
 
     private fun requireGpsPermission() {
         requirePermission(
             permission = Manifest.permission.ACCESS_FINE_LOCATION,
-            successDelegate = {
-                binding.welcomePageButton.visibility = View.VISIBLE
-            },
+            successDelegate = {},
             failureDelegate = {
                 showFailureMessage(true)
             }
@@ -90,9 +89,9 @@ class WelcomePageFragment: Fragment(R.layout.fragment_welcome_page) {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(toHomeListener: (() -> Unit)? = null) =
             WelcomePageFragment().apply {
-
+                this.toHomeListener = toHomeListener
             }
     }
 }

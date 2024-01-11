@@ -33,6 +33,7 @@ class MainFragment: Fragment(R.layout.fragment_main) {
         mainViewModel.liveCurrentUserData.observe(viewLifecycleOwner) {
             if (it != null) {
                 setBottomMenu(R.layout.fragment_bottom_main_menu)
+                setMainFragmentContainerView(R.id.welcomePageFragment)
             }
         }
     }
@@ -75,7 +76,9 @@ class MainFragment: Fragment(R.layout.fragment_main) {
             R.id.navigation_profile ->
                 transaction.replace(mainFragmentContainerViewId, ProfilePageFragment.newInstance())
             R.id.welcomePageFragment ->
-                transaction.replace(mainFragmentContainerViewId, WelcomePageFragment.newInstance())
+                transaction.replace(mainFragmentContainerViewId, WelcomePageFragment.newInstance {
+                    setMainFragmentContainerView(R.id.navigation_home)
+                })
             R.id.mapPageFragment ->
                 transaction.replace(mainFragmentContainerViewId, MapPageFragment.newInstance {
                     setBottomMenu(R.layout.fragment_bottom_main_menu)

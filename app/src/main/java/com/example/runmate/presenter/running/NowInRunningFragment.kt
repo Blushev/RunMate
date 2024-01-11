@@ -5,22 +5,15 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.runmate.R
 import com.example.runmate.databinding.FragmentNowInRunningBinding
-import com.example.runmate.di.ViewModelFactory
 import com.example.runmate.di.appComponent
-import com.example.runmate.presenter.main.MainViewModel
 import com.example.runmate.util.requirePermission
-import javax.inject.Inject
 
 class NowInRunningFragment: Fragment(R.layout.fragment_now_in_running) {
 
     private val binding: FragmentNowInRunningBinding by viewBinding()
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
 
     private var toMapListener: (() -> Unit)? = null
 
@@ -30,19 +23,20 @@ class NowInRunningFragment: Fragment(R.layout.fragment_now_in_running) {
         showFailureMessage(false)
         showSuccess(true)
 
+        requireGpsPermission()
+
         binding.startTrainingButton.setOnClickListener {
-            requireGpsPermission()
+            toMapListener?.invoke()
         }
     }
 
     private fun requireGpsPermission() {
         requirePermission(
             permission = Manifest.permission.ACCESS_FINE_LOCATION,
-            successDelegate = {
-                toMapListener?.invoke()
-            },
+            successDelegate = {},
             failureDelegate = {
                 showFailureMessage(true)
+                showSuccess(false)
             }
         )
     }

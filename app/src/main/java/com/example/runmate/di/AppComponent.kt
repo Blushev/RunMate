@@ -6,6 +6,7 @@ import com.example.runmate.presenter.bottomMenu.BottomMainMenuFragment
 import com.example.runmate.presenter.eventList.EventListFragment
 import com.example.runmate.presenter.home.HomePageFragment
 import com.example.runmate.presenter.main.MainFragment
+import com.example.runmate.presenter.map.MapPageFragment
 import com.example.runmate.presenter.profile.ProfilePageFragment
 import com.example.runmate.presenter.progressTotal.ProgressTotalFragment
 import com.example.runmate.presenter.progressWeek.ProgressWeekFragment
@@ -29,6 +30,7 @@ interface AppComponent {
     fun inject(fragment: ProgressWeekFragment)
     fun inject(fragment: ProgressTotalFragment)
     fun inject(fragment: NowInRunningFragment)
+    fun inject(fragment: MapPageFragment)
 
     @Component.Builder
     interface Builder {
