@@ -9,6 +9,7 @@ import com.example.runmate.presenter.main.MainFragment
 import com.example.runmate.presenter.profile.ProfilePageFragment
 import com.example.runmate.presenter.progressTotal.ProgressTotalFragment
 import com.example.runmate.presenter.progressWeek.ProgressWeekFragment
+import com.example.runmate.presenter.running.NowInRunningFragment
 import com.example.runmate.presenter.welcome.WelcomePageFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -27,6 +28,7 @@ interface AppComponent {
     fun inject(fragment: WelcomePageFragment)
     fun inject(fragment: ProgressWeekFragment)
     fun inject(fragment: ProgressTotalFragment)
+    fun inject(fragment: NowInRunningFragment)
 
     @Component.Builder
     interface Builder {

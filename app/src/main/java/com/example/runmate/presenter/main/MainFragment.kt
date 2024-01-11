@@ -13,7 +13,9 @@ import com.example.runmate.databinding.FragmentMainBinding
 import com.example.runmate.di.ViewModelFactory
 import com.example.runmate.di.appComponent
 import com.example.runmate.presenter.bottomMenu.BottomMainMenuFragment
+import com.example.runmate.presenter.bottomMenu.BottomMapMenuFragment
 import com.example.runmate.presenter.home.HomePageFragment
+import com.example.runmate.presenter.map.MapPageFragment
 import com.example.runmate.presenter.profile.ProfilePageFragment
 import com.example.runmate.presenter.welcome.WelcomePageFragment
 import javax.inject.Inject
@@ -52,6 +54,9 @@ class MainFragment: Fragment(R.layout.fragment_main) {
             R.layout.fragment_bottom_main_menu ->
                 transaction.replace(bottomMenuHostId,
                      BottomMainMenuFragment.newInstance { mainMenuId -> setMainFragmentContainerView(mainMenuId) })
+            R.layout.fragment_bottom_map_menu ->
+                transaction.replace(bottomMenuHostId,
+                    BottomMapMenuFragment.newInstance())
         }
         transaction.commit()
     }
@@ -63,11 +68,19 @@ class MainFragment: Fragment(R.layout.fragment_main) {
         val transaction = childFragmentManager.beginTransaction()
         when (mainFragmentId) {
             R.id.navigation_home ->
-                transaction.replace(mainFragmentContainerViewId, HomePageFragment.newInstance())
+                transaction.replace(mainFragmentContainerViewId, HomePageFragment.newInstance {
+                    setBottomMenu(R.layout.fragment_bottom_map_menu)
+                    setMainFragmentContainerView(R.id.mapPageFragment)
+                })
             R.id.navigation_profile ->
                 transaction.replace(mainFragmentContainerViewId, ProfilePageFragment.newInstance())
             R.id.welcomePageFragment ->
                 transaction.replace(mainFragmentContainerViewId, WelcomePageFragment.newInstance())
+            R.id.mapPageFragment ->
+                transaction.replace(mainFragmentContainerViewId, MapPageFragment.newInstance {
+                    setBottomMenu(R.layout.fragment_bottom_main_menu)
+                    setMainFragmentContainerView(R.id.navigation_home)
+                })
         }
         transaction.commit()
     }

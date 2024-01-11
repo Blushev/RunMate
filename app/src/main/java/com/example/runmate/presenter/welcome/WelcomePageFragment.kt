@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -31,8 +32,8 @@ class WelcomePageFragment: Fragment(R.layout.fragment_welcome_page) {
 
         mainViewModel.liveCurrentUserData.observe(viewLifecycleOwner) {
             if (it != null) {
-                val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
                 binding.welcomePageButton.visibility = View.GONE
+                val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
                 findNavController().navigate(direction)
             }
         }
@@ -48,25 +49,29 @@ class WelcomePageFragment: Fragment(R.layout.fragment_welcome_page) {
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
                 welcomeViewModel.validateForm(s.toString())
-                binding.welcomePageButton.isEnabled = true
             }
         })
 
         binding.welcomePageButton.setOnClickListener {
             welcomeViewModel.createUser()
+            binding.welcomePageButton.isEnabled = true
             val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
             findNavController().navigate(direction)
             true
         }
 
         showFailureMessage(false)
+        binding.welcomePageButton.isEnabled = false
+        binding.welcomePageButton.visibility = View.GONE
         requireGpsPermission()
     }
 
     private fun requireGpsPermission() {
         requirePermission(
             permission = Manifest.permission.ACCESS_FINE_LOCATION,
-            successDelegate = {},
+            successDelegate = {
+                binding.welcomePageButton.visibility = View.VISIBLE
+            },
             failureDelegate = {
                 showFailureMessage(true)
             }
