@@ -19,21 +19,27 @@
     <string name="kilometers">км</string>
     <string name="hour">час</string>
     <string name="cal">кал</string>
+    <string name="km_h">км/ч</string>
+    <string name="gps">GPS</string>
     <string name="passed">пройдено</string>
     <string name="remaining">Ещё</string>
     <string name="now_in_running">Сейчас в беге</string>
     <string name="hello">Привет,</string>
     <string name="profile">Профиль</string>
+    <string name="active_running">Активный бег</string>
     <string name="user_name_example">example_name</string>
     <string name="user_name">Username</string>
     <string name="user_level_example">Beginner</string>
     <string name="recent_events">Недавние события</string>
     <string name="total_progress">Общий прогресс</string>
 
+    <string name="running_duration">Продолжительность бега</string>
+
     <string name="welcome_title">Добро пожаловать!</string>
     <string name="welcome_description">Укажите имя пользователя. Предоставьте доступ к местоположению для отслеживания маршрута тренировок.</string>
     <string name="failure_gps_message">Разрешение на доступ к местоположению не было получено. Запуск тренировок будет недоступен.</string>
     <string name="btn_start">Старт</string>
+    <string name="start_training">Начать тренировку</string>
 
     <string name="personal_parameters">Персональные параметры</string>
     <string name="achievements">Достижения</string>

@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,14 +27,17 @@ class WelcomePageFragment: Fragment(R.layout.fragment_welcome_page) {
     private val welcomeViewModel: WelcomeViewModel by viewModels() { viewModelFactory }
     private val mainViewModel: MainViewModel by viewModels() { viewModelFactory }
 
+    private var toHomeListener: (() -> Unit)? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         mainViewModel.liveCurrentUserData.observe(viewLifecycleOwner) {
             if (it != null) {
-                val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
                 binding.welcomePageButton.visibility = View.GONE
-                findNavController().navigate(direction)
+                toHomeListener?.invoke()
+//                val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
+//                findNavController().navigate(direction)
             }
         }
 
@@ -48,19 +52,19 @@ class WelcomePageFragment: Fragment(R.layout.fragment_welcome_page) {
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
                 welcomeViewModel.validateForm(s.toString())
-                binding.welcomePageButton.isEnabled = true
             }
         })
 
         binding.welcomePageButton.setOnClickListener {
             welcomeViewModel.createUser()
-            val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
-            findNavController().navigate(direction)
+            toHomeListener?.invoke()
+//            val direction = WelcomePageFragmentDirections.actionWelcomePageFragmentToHomePageFragment()
+//            findNavController().navigate(direction)
             true
         }
 
         showFailureMessage(false)
-        requireGpsPermission()
+//        requireGpsPermission()
     }
 
     private fun requireGpsPermission() {
@@ -85,9 +89,9 @@ class WelcomePageFragment: Fragment(R.layout.fragment_welcome_page) {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(toHomeListener: (() -> Unit)? = null) =
             WelcomePageFragment().apply {
-
+                this.toHomeListener = toHomeListener
             }
     }
 }

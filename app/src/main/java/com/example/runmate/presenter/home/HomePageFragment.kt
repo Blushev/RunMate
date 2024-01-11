@@ -14,6 +14,7 @@ import com.example.runmate.di.ViewModelFactory
 import com.example.runmate.di.appComponent
 import com.example.runmate.presenter.eventList.EventListFragment
 import com.example.runmate.presenter.main.MainViewModel
+import com.example.runmate.presenter.running.NowInRunningFragment
 import javax.inject.Inject
 
 class HomePageFragment : Fragment(R.layout.fragment_home_page) {
@@ -23,6 +24,8 @@ class HomePageFragment : Fragment(R.layout.fragment_home_page) {
     lateinit var viewModelFactory: ViewModelFactory
     private val mainViewModel: MainViewModel by viewModels() { viewModelFactory }
 
+    private var toMapListener: (() -> Unit)? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -31,6 +34,7 @@ class HomePageFragment : Fragment(R.layout.fragment_home_page) {
         }
 
         val transaction = childFragmentManager.beginTransaction()
+        transaction.replace(binding.homePageNowInRunning.id, NowInRunningFragment.newInstance(toMapListener))
         transaction.replace(binding.homePageEventList.id, EventListFragment.newInstance(3))
         transaction.commit()
     }
@@ -54,9 +58,9 @@ class HomePageFragment : Fragment(R.layout.fragment_home_page) {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
+        fun newInstance(toMapListener: (() -> Unit)? = null) =
             HomePageFragment().apply {
-
+                this.toMapListener = toMapListener
             }
     }
 }

@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_homePageFragment_to_profilePageFragment"
             app:destination="@id/profilePageFragment" />
+        <action
+            android:id="@+id/action_homePageFragment_to_mapPageFragment"
+            app:destination="@id/mapPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomePageFragment"
@@ -26,6 +29,14 @@
         android:label="ProfilePageFragment" >
         <action
             android:id="@+id/action_profilePageFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapPageFragment"
+        android:name="com.example.runmate.presenter.map.MapPageFragment"
+        android:label="MapPageFragment" >
+        <action
+            android:id="@+id/action_mapPageFragment_to_homePageFragment"
             app:destination="@id/homePageFragment" />
     </fragment>
 </navigation>

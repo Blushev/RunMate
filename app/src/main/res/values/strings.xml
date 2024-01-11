@@ -19,21 +19,27 @@
     <string name="kilometers">km</string>
     <string name="hour">hour</string>
     <string name="cal">cal</string>
+    <string name="km_h">km/h</string>
+    <string name="gps">GPS</string>
     <string name="passed">passed</string>
     <string name="remaining">Remaining</string>
     <string name="now_in_running">Now in the running</string>
     <string name="hello">Hello,</string>
     <string name="profile">Profile</string>
+    <string name="active_running">Active running</string>
     <string name="user_name_example">example_name</string>
     <string name="user_name">Username</string>
     <string name="user_level_example">Beginner</string>
     <string name="recent_events">Recent events</string>
     <string name="total_progress">Total progress</string>
 
+    <string name="running_duration">Running duration</string>
+    
     <string name="welcome_title">Welcome !</string>
     <string name="welcome_description">Specify a user name. Grant access to the location to track your training route.</string>
     <string name="failure_gps_message">Permission to access the location has not been granted. Training start will not be available.</string>
     <string name="btn_start">Start</string>
+    <string name="start_training">Start training</string>
 
     <string name="personal_parameters">Personal parameters</string>
     <string name="achievements">Achievements</string>
