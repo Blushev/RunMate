@@ -1,198 +1,21 @@
 package com.example.runmate.presenter
 
-import android.content.Context
-import android.content.pm.PackageManager
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.runmate.R
-import com.example.runmate.BuildConfig
-import com.tomtom.quantity.Distance
-import com.tomtom.sdk.location.GeoPoint
-import com.tomtom.sdk.location.LocationProvider
-import com.tomtom.sdk.location.android.AndroidLocationProvider
-import com.tomtom.sdk.location.android.AndroidLocationProviderConfig
-import com.tomtom.sdk.map.display.MapOptions
-import com.tomtom.sdk.map.display.TomTomMap
-import com.tomtom.sdk.map.display.camera.CameraOptions
-import com.tomtom.sdk.map.display.camera.CameraTrackingMode
-import com.tomtom.sdk.map.display.common.WidthByZoom
-import com.tomtom.sdk.map.display.location.LocationMarkerOptions
-import com.tomtom.sdk.map.display.route.Instruction
-import com.tomtom.sdk.routing.route.Route
-import com.tomtom.sdk.map.display.route.RouteOptions
-import com.tomtom.sdk.map.display.ui.MapFragment
-import com.tomtom.sdk.navigation.TomTomNavigation
-import com.tomtom.sdk.routing.RoutePlanningCallback
-import com.tomtom.sdk.routing.RoutePlanningResponse
-import com.tomtom.sdk.routing.RoutingFailure
-import com.tomtom.sdk.routing.online.OnlineRoutePlanner
-import com.tomtom.sdk.routing.options.Itinerary
-import com.tomtom.sdk.routing.options.RoutePlanningOptions
-import com.tomtom.sdk.routing.options.calculation.CostModel
-import com.tomtom.sdk.routing.options.calculation.RouteType
-import com.tomtom.sdk.vehicle.Vehicle
-import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.seconds
+import com.example.runmate.databinding.ActivityMainBinding
+import com.example.runmate.presenter.main.MainFragment
 
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var tomTomMap : TomTomMap
-    private lateinit var locationMarkerOptions: LocationMarkerOptions
-    private lateinit var locationProvider: LocationProvider
-    private lateinit var route: Route
-    private lateinit var routePlanningOptions: RoutePlanningOptions
-    private lateinit var routePlanner: OnlineRoutePlanner
-    private lateinit var tomTomNavigation: TomTomNavigation
-
-    val apiKey = BuildConfig.TOMTOM_API_KEY
-
-    private val REQUEST_LOCATION_PERMISSION = 1
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
+    private val binding: ActivityMainBinding by viewBinding()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        checkLocationPermissions()
-
-        val mapOptions = MapOptions(mapKey = apiKey)
-        val mapFragment = MapFragment.newInstance(mapOptions)
+        setContentView(binding.root)
         supportFragmentManager.beginTransaction()
-            .replace(R.id.map_container, mapFragment)
+            .replace(binding.fragmentRootLayout.id, MainFragment.newInstance())
             .commit()
-
-        mapFragment.getMapAsync { map ->
-            tomTomMap = map
-            Log.d("MainActivity", "TomTomMap initialized successfully")
-            locationProvider = createAndroidLocationProvider(applicationContext)
-            enableUserLocation()
-            setUpMapListeners()
-        }
-    }
-
-    private fun checkLocationPermissions() {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // Если разрешение не предоставлено, запросить его
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_LOCATION_PERMISSION
-            )
-        } else {
-            // Разрешение уже предоставлено, включить местоположение
-            enableUserLocation()
-        }
-    }
-
-    private fun createAndroidLocationProvider(context: Context): LocationProvider {
-        val androidLocationProviderConfig = AndroidLocationProviderConfig(
-            minTimeInterval = 250L.milliseconds,
-            minDistance = Distance.meters(20.0)
-        )
-        return AndroidLocationProvider(
-            context = context,
-            config = androidLocationProviderConfig
-        )
-    }
-    private fun setUpMapListeners() {
-    }
-
-    private fun enableUserLocation() {
-        if (::tomTomMap.isInitialized) {
-
-            tomTomMap.setLocationProvider(locationProvider)
-            locationProvider.enable()
-
-            val userLocation = locationProvider.lastKnownLocation
-
-            if (userLocation != null) {
-                val userGeoPoint = GeoPoint(userLocation.position.latitude, userLocation.position.longitude)
-                Log.d("MainActivity", "User Location: $userGeoPoint")
-
-
-                val newCameraOptions = CameraOptions(
-                    position = userGeoPoint,
-                    zoom = 16.0,
-                    tilt = 45.0,
-                    rotation = 90.0
-                )
-
-                val locationMarkerOptions = LocationMarkerOptions(
-                    type = LocationMarkerOptions.Type.Chevron
-                )
-
-                tomTomMap.animateCamera(newCameraOptions, 2.seconds)
-                tomTomMap.enableLocationMarker(locationMarkerOptions)
-
-                createRoute(userGeoPoint)
-
-            }
-        }
-
-    }
-
-    private fun createRoute(userGeoPoint: GeoPoint) {
-        val routePlanner = OnlineRoutePlanner.create(applicationContext, apiKey)
-        Log.d("RoutePlanningOptions", "latitudeLocation: ${userGeoPoint.latitude}")
-        Log.d("RoutePlanningOptions", "longitueLocation: ${userGeoPoint.longitude}")
-
-        val pointA = GeoPoint(userGeoPoint.latitude, userGeoPoint.longitude)
-        val pointB = GeoPoint(userGeoPoint.latitude + 2, userGeoPoint.longitude + 2)
-        val routePlanningOptions = RoutePlanningOptions(
-            itinerary = Itinerary(origin = pointA, destination = pointB),
-            costModel = CostModel(routeType = RouteType.Efficient),
-            vehicle = Vehicle.Pedestrian()
-        )
-
-
-        routePlanner.planRoute(
-            routePlanningOptions,
-            object : RoutePlanningCallback {
-                override fun onSuccess(result: RoutePlanningResponse) {
-                    Log.d("RoutePlanningOptions", "Itinerary: ${routePlanningOptions.itinerary}")
-
-                    val routeOptions = RouteOptions(
-                        geometry = result.routes.flatMap { it.geometry },
-                        color = Color.BLUE,
-                        outlineWidth = 3.0,
-                        widths = listOf(WidthByZoom(5.0)),
-                        progress = Distance.meters(1000.0),
-                        instructions = listOf(
-                            Instruction(
-                                routeOffset = Distance.meters(1000.0),
-                                combineWithNext = false
-                            ),
-                            Instruction(
-                                routeOffset = Distance.meters(2000.0),
-                                combineWithNext = true
-                            ),
-                            Instruction(routeOffset = Distance.meters(3000.0))
-                        ),
-                        tag = "Extra information about the route",
-                        departureMarkerVisible = true,
-                        destinationMarkerVisible = true
-                    )
-                    val route = tomTomMap.addRoute(routeOptions)
-                }
-
-                override fun onFailure(failure: RoutingFailure) {
-                    Log.e("RoutePlanningOptions", "Route planning failed: $failure")
-                }
-
-                override fun onRoutePlanned(route: com.tomtom.sdk.routing.route.Route) {
-                    Log.e("RoutePlanningOptions", "Route onRoutue:")
-
-                }
-
-            }
-        )
-
     }
 }

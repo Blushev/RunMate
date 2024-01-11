@@ -4,13 +4,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
-        android:id="@+id/map_page_map_container"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/map_page_button_back"
@@ -23,7 +20,8 @@
         app:icon="@drawable/baseline_arrow_back_16"
         app:iconTint="@color/secondary_op_07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Назад к предыдущему экрану" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/map_page_title"
