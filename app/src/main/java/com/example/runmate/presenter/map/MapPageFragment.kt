@@ -14,7 +14,6 @@ import com.example.runmate.BuildConfig
 import com.example.runmate.R
 import com.example.runmate.databinding.FragmentMapPageBinding
 import com.example.runmate.di.appComponent
-import com.example.runmate.services.TrackingService
 import com.tomtom.quantity.Distance
 import com.tomtom.sdk.location.GeoPoint
 import com.tomtom.sdk.location.LocationProvider
@@ -28,7 +27,6 @@ import com.tomtom.sdk.map.display.location.LocationMarkerOptions
 import com.tomtom.sdk.map.display.route.Instruction
 import com.tomtom.sdk.map.display.route.RouteOptions
 import com.tomtom.sdk.map.display.ui.MapFragment
-import com.tomtom.sdk.navigation.TomTomNavigation
 import com.tomtom.sdk.routing.RoutePlanningCallback
 import com.tomtom.sdk.routing.RoutePlanningResponse
 import com.tomtom.sdk.routing.RoutingFailure
@@ -37,7 +35,6 @@ import com.tomtom.sdk.routing.options.Itinerary
 import com.tomtom.sdk.routing.options.RoutePlanningOptions
 import com.tomtom.sdk.routing.options.calculation.CostModel
 import com.tomtom.sdk.routing.options.calculation.RouteType
-import com.tomtom.sdk.routing.route.Route
 import com.tomtom.sdk.vehicle.Vehicle
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -48,14 +45,9 @@ class MapPageFragment: Fragment(R.layout.fragment_map_page) {
     private var backToHomeListener: (() -> Unit)? = null
 
     private lateinit var tomTomMap : TomTomMap
-    private lateinit var locationMarkerOptions: LocationMarkerOptions
     private lateinit var locationProvider: LocationProvider
-    private lateinit var route: Route
-    private lateinit var routePlanningOptions: RoutePlanningOptions
-    private lateinit var routePlanner: OnlineRoutePlanner
-    private lateinit var tomTomNavigation: TomTomNavigation
 
-    val apiKey = BuildConfig.TOMTOM_API_KEY
+    private val apiKey = BuildConfig.TOMTOM_API_KEY
 
     private val REQUEST_LOCATION_PERMISSION = 1
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,14 +80,12 @@ class MapPageFragment: Fragment(R.layout.fragment_map_page) {
                 android.Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // Если разрешение не предоставлено, запросить его
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
                 REQUEST_LOCATION_PERMISSION
             )
         } else {
-            // Разрешение уже предоставлено, включить местоположение
             enableUserLocation()
         }
     }
@@ -139,10 +129,8 @@ class MapPageFragment: Fragment(R.layout.fragment_map_page) {
                 tomTomMap.enableLocationMarker(locationMarkerOptions)
 
                 createRoute(userGeoPoint)
-
             }
         }
-
     }
 
     private fun createRoute(userGeoPoint: GeoPoint) {
@@ -200,7 +188,6 @@ class MapPageFragment: Fragment(R.layout.fragment_map_page) {
 
             }
         )
-
     }
 
     override fun onAttach(context: Context) {

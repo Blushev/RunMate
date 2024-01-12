@@ -55,6 +55,7 @@ class NowInRunningFragment: Fragment(R.layout.fragment_now_in_running) {
     private fun startTraining() =
         Intent(requireContext(), TrackingService::class.java).also {
             it.action = ACTION_START_OR_RESUME_SERVICE
+            it.data
             requireContext().startService(it)
         }
 

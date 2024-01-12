@@ -12,8 +12,6 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
 import android.os.Handler
-import android.os.SystemClock
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
@@ -29,6 +27,7 @@ import com.example.runmate.util.Constants.ACTION_STOP_SERVICE
 import com.example.runmate.util.Constants.NOTIFICATION_CHANNEL_ID
 import com.example.runmate.util.Constants.NOTIFICATION_CHANNEL_NAME
 import com.example.runmate.util.Constants.NOTIFICATION_ID
+import com.example.runmate.util.formatTime
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
@@ -81,8 +80,11 @@ class TrackingService: LifecycleService() {
     private val timerRunnable = object : Runnable {
         override fun run() {
             _timerData.value?.let {
-                val newValue = System.currentTimeMillis()
+                val newValue = it + 1
                 _timerData.postValue(newValue)
+                _currentTrainingData.value?.let {  it2 ->
+                    updateNotification(it, it2.distance)
+                }
             }
             timerHandler.postDelayed(this, 1000L)
         }
@@ -103,7 +105,6 @@ class TrackingService: LifecycleService() {
 
     val locationCallback = object : LocationCallback() {
         override fun onLocationResult(result: LocationResult) {
-            Log.i("qwerty", "on load location result")
             super.onLocationResult(result)
             result.locations.let { locations ->
                 for (location in locations) {
@@ -115,7 +116,6 @@ class TrackingService: LifecycleService() {
 
     @SuppressLint("MissingPermission")
     private fun updateLocationTracking() {
-        Log.i("qwerty", "update location tracing")
 
         val locationClient: LocationManager = this.getSystemService(LOCATION_SERVICE) as LocationManager
 
@@ -144,7 +144,6 @@ class TrackingService: LifecycleService() {
 
     private fun addTrainingData(location: Location?, speed: Float) {
         location?.let {
-            Log.i("qwerty", location.longitude.toString())
             val pos = LatLng(location.latitude, location.longitude)
             pathPoints.value?.apply {
                 val prevPos = last()
@@ -214,6 +213,22 @@ class TrackingService: LifecycleService() {
         return super.onStartCommand(intent, flags, startId)
     }
 
+    private fun updateNotification(time: Long, distance: Float) {
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationBuilder = getNotificationBuilder(time, distance)
+
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
+    }
+
+    private fun getNotificationBuilder(time: Long, distance: Float) =
+        NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+            .setAutoCancel(false)
+            .setOngoing(true)
+            .setSmallIcon(R.drawable.baseline_directions_run_24)
+            .setContentTitle(NOTIFICATION_CHANNEL_NAME)
+            .setContentText("${formatTime(time)} — $distance km")
+            .setContentIntent(getMainActivityPendingIntent())
+
     private fun startForegroundService() {
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE)
                 as NotificationManager
@@ -222,14 +237,7 @@ class TrackingService: LifecycleService() {
             createNotificationChannel(notificationManager)
         }
 
-        val notificationBuilder = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-            .setAutoCancel(false)
-            .setOngoing(true)
-            .setSmallIcon(R.drawable.baseline_directions_run_24)
-            .setContentTitle(NOTIFICATION_CHANNEL_NAME)
-            .setContentText("00:00:00")
-            .setContentIntent(getMainActivityPendingIntent())
-
+        val notificationBuilder = getNotificationBuilder(0, 0f)
         startForeground(NOTIFICATION_ID, notificationBuilder.build())
     }
 

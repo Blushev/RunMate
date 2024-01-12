@@ -3,6 +3,7 @@ package com.example.runmate.di
 import android.app.Application
 import com.example.runmate.di.modules.AppModule
 import com.example.runmate.presenter.bottomMenu.BottomMainMenuFragment
+import com.example.runmate.presenter.bottomMenu.BottomMapMenuFragment
 import com.example.runmate.presenter.eventList.EventListFragment
 import com.example.runmate.presenter.home.HomePageFragment
 import com.example.runmate.presenter.main.MainFragment
@@ -25,6 +26,7 @@ interface AppComponent {
     fun inject(fragment: HomePageFragment)
     fun inject(fragment: ProfilePageFragment)
     fun inject(fragment: BottomMainMenuFragment)
+    fun inject(fragment:BottomMapMenuFragment)
     fun inject(fragment: EventListFragment)
     fun inject(fragment: WelcomePageFragment)
     fun inject(fragment: ProgressWeekFragment)

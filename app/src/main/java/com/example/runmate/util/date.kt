@@ -9,10 +9,10 @@ fun formatDate(date: Long): String {
     return sdf.format(Date(date))
 }
 
-fun formatTime(time: Long): String {
-    val seconds = time / 1000 % 60
-    val minutes = time / 60000 % 60
-    val hours = time / 3600000 % 24
+fun formatTime(timeSeconds: Long): String {
+    val seconds = timeSeconds % 60
+    val minutes = timeSeconds / 60 % 60
+    val hours = timeSeconds / 3600 % 24
 
     return String.format("%02d:%02d:%02d", hours, minutes, seconds)
 }
