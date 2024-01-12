@@ -4,6 +4,11 @@
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/welcomePageFragment">
 
+    <action
+        android:id="@+id/action_global_trackingFragment"
+        app:destination="@+id/mapPageFragment"
+        app:launchSingleTop="true" />
+
     <fragment
         android:id="@+id/homePageFragment"
         android:name="com.example.runmate.presenter.home.HomePageFragment"

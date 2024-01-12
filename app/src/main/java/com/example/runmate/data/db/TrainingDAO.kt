@@ -36,4 +36,7 @@ interface TrainingDAO {
 
     @Query("select coalesce(sum(calories), 0) from training where userId = :userId")
     fun getCaloriesTraveledByUserId(userId: Int): Flow<Float>
+
+    @Query("select * from training where userId = :userId and endAt is null order by startAt desc limit 1")
+    fun getLastUnfinishedTrainingByUserId(userId: Int): Flow<List<TrainingEntity>>
 }

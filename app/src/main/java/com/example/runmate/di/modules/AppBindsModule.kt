@@ -16,6 +16,8 @@ import com.example.runmate.domain.training.GetDistanceTraveledByUserIdUseCase
 import com.example.runmate.domain.training.GetDistanceTraveledByUserIdUseCaseImpl
 import com.example.runmate.domain.training.GetDistanceTraveledThisWeekByUserIdUseCase
 import com.example.runmate.domain.training.GetDistanceTraveledThisWeekByUserIdUseCaseImpl
+import com.example.runmate.domain.training.GetLastUnfinishedTrainingByUserIdUseCase
+import com.example.runmate.domain.training.GetLastUnfinishedTrainingByUserIdUseCaseImpl
 import com.example.runmate.domain.training.GetTimeTraveledByUserIdUseCase
 import com.example.runmate.domain.training.GetTimeTraveledByUserIdUseCaseImpl
 import com.example.runmate.domain.training.GetTrainingByIdUseCase
@@ -86,6 +88,9 @@ interface AppBindsModule {
 
     @Binds
     fun bindGetCaloriesTraveledByUserIdUseCase(useCase: GetCaloriesTraveledByUserIdUseCaseImpl): GetCaloriesTraveledByUserIdUseCase
+
+    @Binds
+    fun bindGetLastUnfinishedTrainingByUserIdUseCase(useCase: GetLastUnfinishedTrainingByUserIdUseCaseImpl): GetLastUnfinishedTrainingByUserIdUseCase
 
     companion object {
         @Provides

@@ -4,9 +4,9 @@ import com.example.runmate.data.db.model.TrainingEntity
 
 data class TrainingModel(
     val id: Int = 0,
-    val userId: Int,
+    val userId: Int = 0,
     val startAt: Long,
-    var endAt: Long?,
+    var endAt: Long? = null,
     var distance: Float,
     var calories: Float,
     var averageSpeed: Float

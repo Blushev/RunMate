@@ -14,6 +14,7 @@ import com.example.runmate.BuildConfig
 import com.example.runmate.R
 import com.example.runmate.databinding.FragmentMapPageBinding
 import com.example.runmate.di.appComponent
+import com.example.runmate.services.TrackingService
 import com.tomtom.quantity.Distance
 import com.tomtom.sdk.location.GeoPoint
 import com.tomtom.sdk.location.LocationProvider

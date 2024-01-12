@@ -57,7 +57,10 @@ class MainFragment: Fragment(R.layout.fragment_main) {
                      BottomMainMenuFragment.newInstance { mainMenuId -> setMainFragmentContainerView(mainMenuId) })
             R.layout.fragment_bottom_map_menu ->
                 transaction.replace(bottomMenuHostId,
-                    BottomMapMenuFragment.newInstance())
+                    BottomMapMenuFragment.newInstance {
+                        setBottomMenu(R.layout.fragment_bottom_main_menu)
+                        setMainFragmentContainerView(R.id.navigation_home)
+                    })
         }
         transaction.commit()
     }

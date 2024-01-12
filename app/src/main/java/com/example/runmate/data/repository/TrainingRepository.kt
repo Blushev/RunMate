@@ -15,6 +15,7 @@ interface TrainingRepository {
     suspend fun getDistanceTraveledByUserId(userId: Int): Flow<Float>
     suspend fun getTimeTraveledByUserId(userId: Int): Flow<Float>
     suspend fun getCaloriesTraveledByUserId(userId: Int): Flow<Float>
+    suspend fun getLastUnfinishedTrainingByUserId(userId: Int): Flow<List<TrainingModel>>
 
     val getAllTrainingsOrderedByStartAt: Flow<List<TrainingModel>>
 }
@@ -54,6 +55,13 @@ class TrainingRepositoryImpl @Inject constructor(
 
     override suspend fun getCaloriesTraveledByUserId(userId: Int): Flow<Float> =
         dao.getCaloriesTraveledByUserId(userId)
+
+    override suspend fun getLastUnfinishedTrainingByUserId(userId: Int): Flow<List<TrainingModel>> =
+        dao.getLastUnfinishedTrainingByUserId(userId).map { it ->
+            it.map {
+                it.toTrainingModel()
+            }
+        }
 
     override val getAllTrainingsOrderedByStartAt: Flow<List<TrainingModel>>
         get() = dao.getAllTrainingsOrderedByStartAt().map { it ->

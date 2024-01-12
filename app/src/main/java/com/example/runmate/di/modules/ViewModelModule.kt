@@ -8,6 +8,7 @@ import com.example.runmate.presenter.eventList.EventsViewModel
 import com.example.runmate.presenter.main.MainViewModel
 import com.example.runmate.presenter.progressTotal.ProgressTotalViewModel
 import com.example.runmate.presenter.progressWeek.ProgressWeekViewModel
+import com.example.runmate.presenter.running.TrainingViewModel
 import com.example.runmate.presenter.welcome.WelcomeViewModel
 import dagger.Binds
 import dagger.Module
@@ -43,4 +44,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProgressTotalViewModel::class)
     abstract fun bindProgressTotalViewModel(viewModel: ProgressTotalViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TrainingViewModel::class)
+    abstract fun bindTrainingViewModel(viewModel: TrainingViewModel): ViewModel
 }
